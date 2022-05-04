@@ -13,19 +13,19 @@ Cinema.prototype.getFilmTitles = function () {
 }
 
 Cinema.prototype.findFilmByTitle = function (title) {
-  const filteredArray = this.films.filter((film) => {
+  const foundFilm = this.films.find((film) => {
     return film.title === title
   })
-  return filteredArray[0] // the square brackets is how you get it to return the object
+  return foundFilm // the square brackets is how you get it to return the object
 }
 
 
-Cinema.prototype.findByGenre = function (genre) {
-  const filteredArray = this.films.filter((film) => {
-    return film.genre === genre
-  })
-  return filteredArray
-}
+// Cinema.prototype.findByGenre = function (genre) {
+//   const filteredArray = this.films.filter((film) => {
+//     return film.genre === genre
+//   })
+//   return filteredArray
+// }
 
 
 Cinema.prototype.isItThere = function (year) {
@@ -54,6 +54,14 @@ Cinema.prototype.totalRunningTime = function () {
     return runningTotal + film.length
   },0)
   return total
+}
+
+Cinema.prototype.filmsByProperty = function (property, value) {
+  const filteredArray = this.films.filter((film) => {
+    return film.hasOwnProperty(property) && film[property] == value
+    
+  })
+  return filteredArray
 }
 
 module.exports = Cinema;
